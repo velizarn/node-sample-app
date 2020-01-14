@@ -31,7 +31,7 @@ const shouldCompress = (req, res) => {
 };
 
 const urlOptions = (delay) => ({
-  uri: `http://httpbin.org/delay/${delay}`,
+  uri: `https://httpbin.org/delay/${delay}`,
   headers: {
     'User-Agent': 'SampleApp/1.0'
   },
@@ -70,17 +70,16 @@ app.get('/test', (req, res, next) => {
   const dateStr = (new Date()).toLocaleString();
   const pageData = `${dateStr} - ${req.header('host')}`;
   res.locals.pageTitle = 'Начало';
-  res.locals.subTemplate = 'pages/homepage';
+  res.locals.subTemplate = 'pages/test';
   res.locals.subTemplateJS = [
-    'pages/homepage_js'
+    'pages/test_js'
   ];
   res.locals.pageData = pageData;
   next();
 });
 
 app.post('/remotedata/:delay([0-9]+)', (req, res, next) => {
-  const delay = req.params.delay || 5;
-  const data = { delay, data: 123 };
+  const delay = Math.min((parseInt(req.params.delay) || 5), 10);
   rp(urlOptions(delay))
     .then((data) => {
       res.send(data);

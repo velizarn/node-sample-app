@@ -8,7 +8,7 @@
 
     setTimeout(function(){
 
-      var delaySec = document.getElementById('delay').value || 5;
+      var delaySec = Math.min((parseInt(document.getElementById('delay').value) || 5), 10);
   
       var dataHash = 'delay' + delaySec;
       var dataCached = myStorage.getItem(dataHash) || '';
