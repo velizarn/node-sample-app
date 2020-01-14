@@ -1,0 +1,43 @@
+<script>
+  
+  var myStorage = window.localStorage;
+
+  document.getElementById('sampleCTA').onclick = function(e){
+
+    document.querySelector('#dataContainer').innerHTML = '...';
+
+    setTimeout(function(){
+
+      var delaySec = document.getElementById('delay').value || 5;
+  
+      var dataHash = 'delay' + delaySec;
+      var dataCached = myStorage.getItem(dataHash) || '';
+      
+      if (dataCached !== '') {
+        var dataJson = JSON.parse(dataCached);
+        document.querySelector('#dataContainer').innerHTML = JSON.stringify(dataJson, null, 4);
+        return;
+      }
+  
+      var request = new XMLHttpRequest();
+  
+      request.onreadystatechange = function() {
+        if (request.readyState === 1) {
+          document.querySelector('#dataContainer').innerHTML = '<p><i class="loading">Loading remote data, please wait... </i></p>';
+        }
+      }
+  
+      request.onload = function() {
+        var response = JSON.parse(request.responseText);
+        document.querySelector('#dataContainer').innerHTML = JSON.stringify(response, null, 4);
+        myStorage.setItem(dataHash, JSON.stringify(response));
+      }
+  
+      request.open('POST', '/remotedata/' + delaySec, true);
+      request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      request.send();
+
+    }, 500);     
+  };
+</script>

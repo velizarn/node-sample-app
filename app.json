@@ -1,0 +1,20 @@
+{
+  "name": "node-sample-app",
+  "repository": "https://github.com/velizarn/node-sample-app.git",
+  "scripts": {},
+  "env": {},
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free",
+      "command": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 src/start.js --process=server"
+    }
+  },
+  "addons": [],
+  "buildpacks": [
+    { "url": "heroku/nodejs" },
+    { "url": "https://buildpack-registry.s3.amazonaws.com/buildpacks/velizarn/heroku-buildpack-nano.tgz" },
+    { "url": "https://github.com/ianpurvis/heroku-buildpack-version" }
+  ],
+  "stack": "heroku-18"
+}
