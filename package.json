@@ -6,14 +6,18 @@
     "url": "https://velizarn.github.io/"
   },
   "engines": {
-    "node": "10.18.1"
+    "node": "10.19.0"
   },
-  "main": "index.js",
+  "main": "src/start.js",
   "scripts": {
+    "heroku-prebuild": "echo This runs before Heroku installs your dependencies.",
+    "heroku-postbuild": "echo This runs afterwards.",
     "lint": "eslint --ext .js,.json,.jsx . --fix",
+    "postinstall": "npm dedupe",
     "start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 src/start.js --process=server",
     "start:local": "nf start",
     "stop:all": "taskkill /f /im node.exe",
+    "stop:all:linux": "killall -g node",
     "update:dev": "rm -rf node_modules && rm -rf package-lock.json && npm cache clean --force && npm install --ignore-scripts && npm dedupe && npm audit fix",
     "watch": "nodemon --optimize_for_size --max_old_space_size=920 --gc_interval=100 src/start.js --process=server"
   },
@@ -22,31 +26,36 @@
     "body-parser": "1.19.0",
     "compression": "1.7.4",
     "dotenv": "8.2.0",
-    "ejs": "3.0.1",
+    "ejs": "3.1.5",
     "express": "4.17.1",
-    "helmet": "3.21.2",
+    "helmet": "4.1.0",
     "heroku-logger": "0.3.3",
-    "request": "2.88.0",
-    "request-promise": "4.2.5",
-    "yargs": "15.1.0"
+    "request": "2.88.2",
+    "request-promise": "4.2.6",
+    "yargs": "15.4.1"
   },
   "devDependencies": {
-    "babel-eslint": "10.0.3",
-    "cross-env": "6.0.3",
-    "eslint": "6.8.0",
-    "eslint-config-prettier": "6.9.0",
-    "eslint-plugin-json": "2.0.1",
-    "eslint-plugin-prettier": "3.1.2",
-    "eslint-plugin-security": "1.4.0",
-    "foreman": "3.0.1",
-    "nodemon": "2.0.2",
-    "prettier": "1.19.1"
+    "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-json": "^2.1.2",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-security": "^1.4.0",
+    "foreman": "^3.0.1",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.0.5"
   },
   "nodemonConfig": {
     "ignore": [
       "dev/*",
       "public/*",
       "test/*"
+    ],
+    "watch": [
+      "src/**/*",
+      ".env",
+      "*.json"
     ],
     "verbose": true,
     "colours": true

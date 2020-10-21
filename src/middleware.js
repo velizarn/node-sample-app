@@ -73,13 +73,13 @@ const forceDomainSSL = (req, res, next) => {
 
 /**
  * Exclude route from express middleware
- * 
+ *
  * You can add as many routes as you wish, e.g.
- * 
+ *
  * app.use(unless(redirectPage, '/user/login', '/user/register'));
- * 
- * @param {Object} middleware 
- * @param  {...any} paths 
+ *
+ * @param {Object} middleware
+ * @param  {...any} paths
  */
 const unless = (middleware, ...paths) => (req, res, next) => {
   const pathCheck = paths.some(path => path === req.path);
@@ -94,7 +94,7 @@ const middlewareSecurity = (req, res, next) => {
 /**
  * A middleware to skip HTTP requests for .map files
  * Don't use this method if you actually have sourcemap files for minified files.
- * 
+ *
  * @param {Object} [req] Request object
  * @param {Object} [res] Response object
  * @param {Object} [next] Middleware callback

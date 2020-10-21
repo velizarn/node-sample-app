@@ -31,12 +31,20 @@
       "error",
       "unix"
     ],
+    "no-trailing-spaces": [
+      "error",
+      {
+        "skipBlankLines": false,
+        "ignoreComments": false
+      }
+    ],
     "no-undef": [
       "error",
       {
         "typeof": true
       }
     ],
+    "no-unused-vars": "off",
     "quotes": [
       "error",
       "single"

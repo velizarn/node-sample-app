@@ -1,5 +1,3 @@
-/* eslint no-unused-vars: 0 */
-/* eslint no-undef: 0 */
 'use strict';
 
 require('dotenv').config();
@@ -9,10 +7,10 @@ const {
   WEB_CONCURRENCY
 } = process.env;
 
-const 
+const
   argv = require('yargs').argv,
   cluster = require('cluster'),
-  logger = require('heroku-logger');  
+  logger = require('heroku-logger');
 
 const WORKERS = WEB_CONCURRENCY || require('os').cpus().length;
 
@@ -48,7 +46,7 @@ if (NODE_ENV !== 'test') {
   } else {
     worker();
   }
-  
+
 } else {
   worker();
 }

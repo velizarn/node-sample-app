@@ -1,5 +1,3 @@
-/* eslint no-unused-vars: 0 */
-/* eslint no-undef: 0 */
 'use strict';
 
 require('dotenv').config();
@@ -8,11 +6,12 @@ const defaults = require('./defaults');
 
 const {
   CACHE_TTL = defaults.cacheTtl,
+  HELMET_CONFIG = '{}',
   NODE_ENV,
   PORT = defaults.appPort,
 } = process.env;
 
-const 
+const
   compression = require('compression'),
   bodyParser = require('body-parser'),
   express = require('express'),
@@ -20,6 +19,7 @@ const
   logger = require('heroku-logger'),
   path = require('path'),
   rp = require('request-promise'),
+  { isEmptyObject } = require('./helpers'),
   { forceDomainSSL, unless , middlewareSecurity } = require('./middleware');
 
 const shouldCompress = (req, res) => {
@@ -38,11 +38,26 @@ const urlOptions = (delay) => ({
   json: true
 });
 
+const helmetConfig = () => {
+
+  const helmetConfigDefault = require('./defaults').helmetConfig;
+
+  let localConfig = JSON.parse(HELMET_CONFIG) || {};
+
+  try {
+    localConfig = require('../.helmet.local');
+  } catch (err) { /* */ }
+
+  return !isEmptyObject(localConfig)
+    ? Object.assign({}, helmetConfigDefault, localConfig)
+    : helmetConfigDefault;
+};
+
 const app = express();
 
 app
   .use(forceDomainSSL)
-  .use(helmet())
+  .use(helmet(helmetConfig()))
   .use(compression({ filter: shouldCompress, level: 6 }))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
@@ -69,7 +84,7 @@ app.get('/ping', (req, res, next) => {
 app.get('/test', (req, res, next) => {
   const dateStr = (new Date()).toLocaleString();
   const pageData = `${dateStr} - ${req.header('host')}`;
-  res.locals.pageTitle = 'Начало';
+  res.locals.pageTitle = 'Home';
   res.locals.subTemplate = 'pages/test';
   res.locals.subTemplateJS = [
     'pages/test_js'

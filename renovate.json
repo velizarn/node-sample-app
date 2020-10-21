@@ -1,5 +1,29 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    ":ignoreUnstable"
+  ],
+  "packageRules": [
+      {
+      "depTypeList": ["devDependencies"],
+      "packagePatterns": ["^eslint"],
+      "groupName": "eslint packages",
+      "schedule": ["after 9pm on monday"]
+    },
+    {
+      "depTypeList": ["dependencies"],
+      "packagePatterns": ["^express"],
+      "labels": ["express"]
+    },
+    {
+      "depTypeList": ["dependencies", "devDependencies"],
+      "updateTypes": ["major"],
+      "labels": ["update-major"]
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"]
+  },
+  "timezone": "Europe/Sofia"
 }
