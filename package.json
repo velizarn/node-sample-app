@@ -28,11 +28,11 @@
     "dotenv": "8.2.0",
     "ejs": "3.1.5",
     "express": "4.17.1",
-    "helmet": "4.1.0",
+    "helmet": "4.1.1",
     "heroku-logger": "0.3.3",
     "request": "2.88.2",
     "request-promise": "4.2.6",
-    "yargs": "15.4.1"
+    "yargs": "16.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
