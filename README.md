@@ -20,6 +20,6 @@ Since Heroku app names are in a global namespace, you can expect that common nam
 
 1) Install Javascript dependencies (via yarn or npm)
 
-2) Create .env file with required params, point EXIFTOOL_PATH to your local exiftool instance.
+2) Create .env file with required params, refer to .env.sample
 
 3) Start the application
