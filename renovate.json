@@ -4,11 +4,25 @@
     ":ignoreUnstable"
   ],
   "packageRules": [
-      {
+    {
       "depTypeList": ["devDependencies"],
       "packagePatterns": ["^eslint"],
       "groupName": "eslint packages",
       "schedule": ["after 9pm on monday"]
+    },
+    {
+      "depTypeList": ["devDependencies"],
+      "packagePatterns": [
+        "^eslint"
+      ],
+      "packageNames": [
+        "babel-eslint",
+        "cross-env",
+        "foreman",
+        "nodemon",
+        "prettier"
+      ],
+      "rangeStrategy": "replace"
     },
     {
       "depTypeList": ["dependencies"],
