@@ -1,5 +1,8 @@
 # node-sample-app
 
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/velizarn/node-sample-app) 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/velizarn/node-sample-app/blob/master/LICENSE)
+
 ## Setup
 
 ### Heroku
