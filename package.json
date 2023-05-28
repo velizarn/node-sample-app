@@ -32,7 +32,7 @@
     "heroku-logger": "0.3.3",
     "request": "2.88.2",
     "request-promise": "4.2.6",
-    "yargs": "16.1.0"
+    "yargs": "17.7.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
