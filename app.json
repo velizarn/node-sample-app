@@ -6,7 +6,7 @@
   "formation": {
     "web": {
       "quantity": 1,
-      "size": "free",
+      "size": "eco",
       "command": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 src/start.js --process=server"
     }
   },
