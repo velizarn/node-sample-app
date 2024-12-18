@@ -16,5 +16,5 @@
     { "url": "https://buildpack-registry.s3.amazonaws.com/buildpacks/velizarn/heroku-buildpack-nano.tgz" },
     { "url": "https://github.com/ianpurvis/heroku-buildpack-version" }
   ],
-  "stack": "heroku-18"
+  "stack": "heroku-24"
 }
