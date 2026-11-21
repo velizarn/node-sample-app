@@ -27,7 +27,7 @@
     "compression": "1.7.4",
     "dotenv": "8.2.0",
     "ejs": "3.1.5",
-    "express": "4.17.1",
+    "express": "4.20.0",
     "helmet": "4.1.1",
     "heroku-logger": "0.3.3",
     "request": "2.88.2",
